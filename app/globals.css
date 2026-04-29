@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+:root {
+  --hz-bg: #080B14;
+  --hz-surface: #0D1021;
+  --hz-border: rgba(99, 102, 241, 0.15);
+  --hz-accent-1: #6366F1;
+  --hz-accent-2: #8B5CF6;
+  --hz-accent-3: #06B6D4;
+  --hz-text-primary: #F8FAFC;
+  --hz-text-muted: #64748B;
+  --hz-glow: rgba(99, 102, 241, 0.4);
+}
+
+@theme inline {
+  --color-background: var(--hz-bg);
+  --color-foreground: var(--hz-text-primary);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-instrument-serif);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--hz-bg);
+  color: var(--hz-text-primary);
+  /* SVG noise via base64 for premium grain */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-blend-mode: overlay;
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-size: 100px 100px; /* scaling down the noise */
+  /* Remove default cursor since we have a custom one */
+  cursor: none;
+}
+
+a, button, [role="button"], input, textarea, select {
+  cursor: none; /* keep hidden for custom cursor */
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, var(--hz-accent-1) 0%, var(--hz-accent-2) 50%, var(--hz-accent-3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+::selection {
+  background: var(--hz-accent-1);
+  color: #ffffff;
+}
+
+/* Base custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--hz-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--hz-surface);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--hz-accent-1);
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(13, 16, 33, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--hz-border);
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--hz-accent-1);
+  outline-offset: 4px;
+}
