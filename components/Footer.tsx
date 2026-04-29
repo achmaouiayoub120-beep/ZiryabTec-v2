@@ -26,7 +26,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-[var(--hz-text-muted)] text-sm leading-relaxed mb-6">
-              {SITE_CONFIG.mission}
+              {SITE_CONFIG.description}
             </p>
           </div>
 
