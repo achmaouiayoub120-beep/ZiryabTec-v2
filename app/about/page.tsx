@@ -78,7 +78,15 @@ export default function AboutPage() {
                           className="relative group/icon"
                         >
                           <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center p-2 hover:bg-white/10 transition-colors backdrop-blur-sm cursor-help">
-                            <img src={t.customUrl ? t.customUrl : `https://cdn.simpleicons.org/${t.slug}/${t.color}`} alt={t.name} className="w-full h-full object-contain drop-shadow-md" />
+                            {t.svg ? (
+                              <div 
+                                className="w-full h-full text-[var(--hz-accent-1)]" 
+                                style={{ color: `#${t.color}` }}
+                                dangerouslySetInnerHTML={{ __html: t.svg }} 
+                              />
+                            ) : (
+                              <img src={t.customUrl ? t.customUrl : `https://cdn.simpleicons.org/${t.slug}/${t.color}`} alt={t.name} className="w-full h-full object-contain drop-shadow-md" />
+                            )}
                           </div>
                           {/* Tooltip */}
                           <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-[var(--hz-surface)] text-xs text-white px-2 py-1 rounded opacity-0 group-hover/icon:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-20">

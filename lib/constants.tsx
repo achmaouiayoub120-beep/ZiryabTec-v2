@@ -91,7 +91,12 @@ export const TIMELINE = [
   { year: "2020", title: "Spécialisation", desc: "Maîtrise de technologies cloud et modernes pour des architectures évolutives.", tech: [
     { name: "Node.js", slug: "nodedotjs", color: "339933" },
     { name: "React", slug: "react", color: "61DAFB" },
-    { name: "AWS", slug: "amazonwebservices", color: "FF9900", customUrl: "https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original.svg" },
+    { 
+      name: "AWS", 
+      slug: "amazonwebservices", 
+      color: "FF9900", 
+      svg: `<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M15.4 15.3c-1.2 0-2.4-.1-3.7-.4-1.1-.2-2.2-.6-3.1-1.1l.7-1.9c.6.4 1.3.8 2.1 1.1.8.2 1.6.4 2.5.4 1.4 0 2.4-.3 3-.9.6-.6 1-1.5 1-2.6v-2.2h-2.1c-1.1 0-1.9.3-2.4 1-.5.7-.8 1.5-.8 2.5 0 1.1.3 2 .9 2.6.6.6 1.4.9 2.6.9 1.1 0 2.1-.4 2.8-.2v1.1c0 .7-.1 1.3-.4 1.8s-.7 1-1.2 1.2c-.5.3-1.1.4-1.9.4zm.3-4.6c-.7 0-1.2-.2-1.6-.7-.4-.5-.6-1-.6-1.5 0-.6.2-1.1.6-1.5.4-.4.9-.6 1.6-.6s1.2.2 1.6.6c.4.4.6.9.6 1.5 0 .5-.2 1-.6 1.5-.4.5-.9.7-1.6.7zM9.5 16.5c-1.4.4-2.9.6-4.5.6-2.3 0-4.4-.4-6.3-1.3l.8-1.9c1.5.8 3.3 1.1 5.4 1.1 3.7 0 5.5-1.1 5.5-3.4 0-.7-.2-1.2-.5-1.5-.3-.3-.8-.5-1.5-.5H6.3c-1.1 0-1.9.3-2.6.8-.7.5-1 1.3-1 2.3 0 1.1.3 1.9 1 2.4s1.7.9 3 .9c1.2 0 2.2-.3 3.1-1v1.5c-.3 0-.3 0 0 0z"/></svg>`
+    },
     { name: "Docker", slug: "docker", color: "2496ED" },
     { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },
     { name: "Laravel", slug: "laravel", color: "FF2D20" },
