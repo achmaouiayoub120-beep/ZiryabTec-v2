@@ -91,7 +91,7 @@ export const TIMELINE = [
   { year: "2020", title: "Spécialisation", desc: "Maîtrise de technologies cloud et modernes pour des architectures évolutives.", tech: [
     { name: "Node.js", slug: "nodedotjs", color: "339933" },
     { name: "React", slug: "react", color: "61DAFB" },
-    { name: "AWS", slug: "amazonaws", color: "FF9900" },
+    { name: "AWS", slug: "amazonaws", color: "FF9900", customUrl: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" },
     { name: "Docker", slug: "docker", color: "2496ED" },
     { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },
     { name: "Laravel", slug: "laravel", color: "FF2D20" },
