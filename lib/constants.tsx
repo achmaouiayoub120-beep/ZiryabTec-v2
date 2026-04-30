@@ -88,7 +88,16 @@ export const TESTIMONIALS = [
 
 export const TIMELINE = [
   { year: "2018", title: "Fondation", desc: "Création de ZiryabTec avec une vision claire : innover dans le développement de logiciels." },
-  { year: "2020", title: "Spécialisation", desc: "Maîtrise de technologies cloud et modernes : NodeJS, React, AWS, Docker." },
+  { year: "2020", title: "Spécialisation", desc: "Maîtrise de technologies cloud et modernes pour des architectures évolutives.", tech: [
+    { name: "Node.js", slug: "nodedotjs", color: "339933" },
+    { name: "React", slug: "react", color: "61DAFB" },
+    { name: "AWS", slug: "amazonaws", color: "232F3E" },
+    { name: "Docker", slug: "docker", color: "2496ED" },
+    { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },
+    { name: "Laravel", slug: "laravel", color: "FF2D20" },
+    { name: "Vue.js", slug: "vuedotjs", color: "4FC08D" },
+    { name: "Angular", slug: "angular", color: "DD0031" }
+  ] },
   { year: "2022", title: "Croissance", desc: "Expansion de l'équipe et partenariats stratégiques en outsourcing IT." },
   { year: "2024", title: "L'Ère Digitale", desc: "Digitalisation percutante et développement d'infrastructures robustes." },
 ];
