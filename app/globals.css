@@ -1,6 +1,18 @@
 @import "tailwindcss";
 
 :root {
+  --hz-bg: #f8fafc;
+  --hz-surface: #ffffff;
+  --hz-border: rgba(0, 0, 0, 0.08);
+  --hz-accent-1: #6366f1;
+  --hz-accent-2: #8b5cf6;
+  --hz-accent-3: #06b6d4;
+  --hz-text-primary: #0f172a;
+  --hz-text-muted: #64748b;
+  --hz-glow: rgba(99, 102, 241, 0.1);
+}
+
+.dark {
   --hz-bg: #080B14;
   --hz-surface: #0D1021;
   --hz-border: rgba(99, 102, 241, 0.15);
@@ -35,6 +47,22 @@ body {
   background-size: 100px 100px; /* scaling down the noise */
   /* Remove default cursor since we have a custom one */
   cursor: none;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+.dark body::before {
+  opacity: 0.05;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--hz-bg);
+  z-index: -1;
 }
 
 a, button, [role="button"], input, textarea, select {
@@ -70,10 +98,15 @@ a, button, [role="button"], input, textarea, select {
 
 /* Glassmorphism utility */
 .glass {
-  background: rgba(13, 16, 33, 0.4);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--hz-border);
+  transition: background 0.5s ease, border-color 0.5s ease;
+}
+
+.dark .glass {
+  background: rgba(13, 16, 33, 0.4);
 }
 
 /* Focus styles for accessibility */

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { SITE_CONFIG } from "@/lib/constants";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -49,16 +50,17 @@ export default function Navbar() {
 
           {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-sm font-medium text-[var(--hz-text-muted)] hover:text-white transition-colors"
+                className="text-sm font-medium text-[var(--hz-text-muted)] hover:text-[var(--hz-text-primary)] transition-colors"
                 data-cursor="button"
               >
                 {link.name}
               </Link>
             ))}
+            <div className="h-6 w-[1px] bg-[var(--hz-border)] mx-2" />
+            <ThemeToggle />
             <Link
               href="/contact"
               className="relative px-5 py-2 text-sm font-medium rounded-full border border-[var(--hz-border)] overflow-hidden group"
@@ -71,18 +73,21 @@ export default function Navbar() {
             </Link>
           </nav>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden relative z-50 p-2 text-white"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle Menu"
-          >
-            <div className="w-6 h-5 flex flex-col justify-between">
-              <span className={`w-full h-0.5 bg-current transform transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-              <span className={`w-full h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
-              <span className={`w-full h-0.5 bg-current transform transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
-            </div>
-          </button>
+          {/* Mobile Actions */}
+          <div className="md:hidden flex items-center gap-4 relative z-50">
+            <ThemeToggle />
+            <button
+              className="p-2 text-[var(--hz-text-primary)]"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Menu"
+            >
+              <div className="w-6 h-5 flex flex-col justify-between">
+                <span className={`w-full h-0.5 bg-current transform transition-all duration-300 ${mobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`} />
+                <span className={`w-full h-0.5 bg-current transition-all duration-300 ${mobileMenuOpen ? 'opacity-0' : ''}`} />
+                <span className={`w-full h-0.5 bg-current transform transition-all duration-300 ${mobileMenuOpen ? '-rotate-45 -translate-y-2.5' : ''}`} />
+              </div>
+            </button>
+          </div>
         </div>
       </header>
 

@@ -1,6 +1,5 @@
-"use client";
-
 import { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 
 interface Node {
   x: number;
@@ -12,12 +11,14 @@ interface Node {
 
 export default function NetworkCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
   
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     
-    const ctx = canvas.getContext("2d", { alpha: false });
+    // We need alpha: true now to properly handle theme transitions and transparency
+    const ctx = canvas.getContext("2d");
     if (!ctx) return;
     
     let animationFrameId: number;
@@ -32,7 +33,6 @@ export default function NetworkCanvas() {
     const NUM_NODES = isMobile ? 20 : 35;
     const CONNECTION_DISTANCE = 180;
     const MOUSE_ATTRACTION_DISTANCE = 150;
-    const NODE_COLOR = "#6366F1"; // Accent 1
     
     const nodes: Node[] = [];
     
@@ -60,8 +60,14 @@ export default function NetworkCanvas() {
     
     // Render loop
     const render = () => {
-      // Clear with solid dark background for performance (alpha: false)
-      ctx.fillStyle = "#080B14"; // hz-bg
+      // Fetch dynamic colors from the theme
+      const isDark = document.documentElement.classList.contains("dark");
+      const bgColor = isDark ? "#080B14" : "#f8fafc";
+      const accent1 = isDark ? "129, 140, 248" : "99, 102, 241"; // rgb
+      const accent2 = isDark ? "34, 211, 238" : "139, 92, 246"; // rgb
+
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = bgColor;
       ctx.fillRect(0, 0, width, height);
       
       // Update nodes
@@ -95,16 +101,16 @@ export default function NetworkCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
           
           if (dist < CONNECTION_DISTANCE) {
-            const opacity = (1 - dist / CONNECTION_DISTANCE) * 0.6;
-            
-            // Create gradient
-            const gradient = ctx.createLinearGradient(node.x, node.y, nodeB.x, nodeB.y);
-            gradient.addColorStop(0, `rgba(99, 102, 241, ${opacity})`); // hz-accent-1
-            gradient.addColorStop(1, `rgba(139, 92, 246, ${opacity})`); // hz-accent-2
+            const opacity = (1 - dist / CONNECTION_DISTANCE) * (isDark ? 0.3 : 0.2);
             
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(nodeB.x, nodeB.y);
+            
+            const gradient = ctx.createLinearGradient(node.x, node.y, nodeB.x, nodeB.y);
+            gradient.addColorStop(0, `rgba(${accent1}, ${opacity})`);
+            gradient.addColorStop(1, `rgba(${accent2}, ${opacity})`);
+            
             ctx.strokeStyle = gradient;
             ctx.lineWidth = 1;
             ctx.stroke();
@@ -114,7 +120,7 @@ export default function NetworkCanvas() {
         // Draw node
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(99, 102, 241, 0.8)`;
+        ctx.fillStyle = `rgba(${accent1}, ${isDark ? 0.4 : 0.3})`;
         ctx.fill();
       }
       
@@ -143,7 +149,7 @@ export default function NetworkCanvas() {
       document.removeEventListener("mouseleave", onMouseLeave);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [theme]); // Re-run if theme changes to pick up new colors
 
   return (
     <canvas
