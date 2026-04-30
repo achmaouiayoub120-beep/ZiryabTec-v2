@@ -30,6 +30,28 @@ export default function Footer() {
             </p>
           </div>
 
+          {/* Contact & Socials */}
+          <div className="lg:col-span-1">
+            <h3 className="text-white font-bold mb-6">Contact & Réseaux</h3>
+            <ul className="space-y-4 text-sm text-[var(--hz-text-muted)]">
+              <li>
+                <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-[var(--hz-accent-1)] transition-colors">{SITE_CONFIG.email}</a>
+              </li>
+              <li>
+                <a href={`tel:${SITE_CONFIG.phone?.replace(/\s+/g, '')}`} className="hover:text-[var(--hz-accent-1)] transition-colors">{SITE_CONFIG.phone}</a>
+              </li>
+              <li>{SITE_CONFIG.location}</li>
+              {SITE_CONFIG.linkedin && (
+                <li className="pt-2">
+                  <a href={SITE_CONFIG.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-white hover:text-[var(--hz-accent-1)] transition-colors">
+                    <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn
+                  </a>
+                </li>
+              )}
+            </ul>
+          </div>
+
           {/* Links Col */}
           <div>
             <h3 className="font-bold text-white mb-6 tracking-wider text-sm uppercase">Navigation</h3>
@@ -55,18 +77,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Col */}
-          <div>
-            <h3 className="font-bold text-white mb-6 tracking-wider text-sm uppercase">Contact</h3>
-            <ul className="flex flex-col gap-4 text-sm text-[var(--hz-text-muted)]">
-              <li>
-                <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-white transition-colors">
-                  {SITE_CONFIG.email}
-                </a>
-              </li>
-              <li>{SITE_CONFIG.location}</li>
-            </ul>
-          </div>
         </div>
 
         {/* Copyright */}

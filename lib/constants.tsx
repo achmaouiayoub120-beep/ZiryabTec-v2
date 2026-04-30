@@ -5,7 +5,13 @@ export const SITE_CONFIG = {
   slogan: "Créateurs de solutions digitales, penseurs d'idées innovantes.",
   description: "ZiryabTec propulse les entreprises dans l'ère digitale — du développement ERP sur mesure à la stratégie e-commerce, en passant par le marketing data-driven et l'outsourcing expert.",
   email: "contact@ziryabtec.com",
-  location: "Casablanca, Maroc",
+  phone: "+212 670 20 00 50",
+  location: "Casablanca, Casablanca - Settat",
+  linkedin: "https://www.linkedin.com/company/ziryabtec/",
+  sector: "Développement de logiciels",
+  size: "2-10 employés",
+  founded: "2018",
+  specialties: "NodeJS, Laravel, Angular, React, VueJS, AWS, Docker, Kubernetes et DevOps"
 };
 
 export const SERVICES = [
@@ -81,8 +87,8 @@ export const TESTIMONIALS = [
 ];
 
 export const TIMELINE = [
-  { year: "2012", title: "Fondation", desc: "Création de ZiryabTec avec une vision claire : innover." },
-  { year: "2016", title: "Expansion", desc: "Ouverture à l'international et premiers grands comptes." },
-  { year: "2020", title: "Transformation", desc: "Pivot vers les solutions digitales intégrées et le cloud." },
-  { year: "2024", title: "L'Ère de l'IA", desc: "Intégration de l'intelligence artificielle dans toutes nos offres." },
+  { year: "2018", title: "Fondation", desc: "Création de ZiryabTec avec une vision claire : innover dans le développement de logiciels." },
+  { year: "2020", title: "Spécialisation", desc: "Maîtrise de technologies cloud et modernes : NodeJS, React, AWS, Docker." },
+  { year: "2022", title: "Croissance", desc: "Expansion de l'équipe et partenariats stratégiques en outsourcing IT." },
+  { year: "2024", title: "L'Ère Digitale", desc: "Digitalisation percutante et développement d'infrastructures robustes." },
 ];

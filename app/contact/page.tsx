@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { SITE_CONFIG, SERVICES } from "@/lib/constants";
-import { Mail, MapPin } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 export default function ContactPage() {
   const [formState, setFormState] = useState<"idle" | "submitting" | "success">("idle");
@@ -41,6 +41,18 @@ export default function ContactPage() {
             </p>
 
             <div className="space-y-8">
+              <div className="flex gap-4 items-start">
+                <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-[var(--hz-accent-1)] shrink-0">
+                  <Phone size={24} />
+                </div>
+                <div>
+                  <h3 className="font-bold text-white mb-1">Téléphone</h3>
+                  <a href={`tel:${SITE_CONFIG.phone?.replace(/\s+/g, '')}`} className="text-[var(--hz-text-muted)] hover:text-[var(--hz-accent-1)] transition-colors" data-cursor="button">
+                    {SITE_CONFIG.phone}
+                  </a>
+                </div>
+              </div>
+
               <div className="flex gap-4 items-start">
                 <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-[var(--hz-accent-1)] shrink-0">
                   <Mail size={24} />
