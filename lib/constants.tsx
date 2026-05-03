@@ -1,4 +1,4 @@
-import { Monitor, Smartphone, Users, Zap, GraduationCap, MessageSquare } from "lucide-react";
+import { Globe, Smartphone, Users, Zap, GraduationCap, Brain } from "lucide-react";
 
 export const SITE_CONFIG = {
   name: "ZiryabTec",
@@ -18,9 +18,9 @@ export const SERVICES = [
   { 
     id: "dev-web", 
     title: "Développement web", 
-    icon: <Monitor size={32} />, 
+    icon: <Globe size={32} />, 
     image: "/services/dev-web.png",
-    desc: "Les techniques de développement web les plus avancées sont utilisées à fin de concevoir des sites web fiables.", 
+    desc: "Sites vitrines, e-commerce, apps web complexes avec les dernières technologies.", 
     short: "Conception de sites web fiables" 
   },
   { 
@@ -28,15 +28,15 @@ export const SERVICES = [
     title: "Développement mobile", 
     icon: <Smartphone size={32} />, 
     image: "/services/dev-mobile.png",
-    desc: "On vous garantit une expérience utilisateur attrayante et une interface utilisateur optimale sur tous les appareils mobiles.", 
+    desc: "Applications iOS & Android natives et cross-platform performantes.", 
     short: "Expérience mobile optimale" 
   },
   { 
     id: "outsourcing", 
-    title: "Outsourcing", 
+    title: "Outsourcing IT", 
     icon: <Users size={32} />, 
     image: "/services/outsourcing.png",
-    desc: "Nous offrons une variété de services informatiques pour tout genre d'entreprise ainsi que pour les organisations étrangères.", 
+    desc: "Équipes dédiées de développeurs, intégrées à vos processus internes.", 
     short: "Services IT pour votre entreprise" 
   },
   { 
@@ -44,7 +44,7 @@ export const SERVICES = [
     title: "Digitalisation", 
     icon: <Zap size={32} />, 
     image: "/services/digitalisation.png",
-    desc: "Nos services de digitalisation sont soigneusement sélectionnés pour donner à votre marque une exposition numérique percutante.", 
+    desc: "Transformation digitale de vos processus métier, ERP sur mesure.", 
     short: "Exposition numérique percutante" 
   },
   { 
@@ -52,37 +52,47 @@ export const SERVICES = [
     title: "Formation", 
     icon: <GraduationCap size={32} />, 
     image: "/services/formation.png",
-    desc: "Une formation riche et diversifiée pour développer vos compétences et suivre l'essor technologique.", 
+    desc: "Programmes de montée en compétences tech pour vos équipes.", 
     short: "Développez vos compétences" 
   },
   { 
-    id: "discussion", 
-    title: "Discussion", 
-    icon: <MessageSquare size={32} />, 
+    id: "data-ia", 
+    title: "Data & IA", 
+    icon: <Brain size={32} />, 
     image: "/services/outsourcing.png",
-    desc: "Prompt conversation and collaboration within your community of learners and instructors with forums system integrated.", 
-    short: "Collaboration & Communauté" 
+    desc: "Solutions d'intelligence artificielle et d'analyse de données.", 
+    short: "Intelligence Artificielle" 
   }
 ];
 
 export const TESTIMONIALS = [
   {
     id: 1,
-    name: "Youssef Alaoui",
-    role: "CEO, TechMaroc",
-    content: "ZiryabTec a transformé notre gestion interne grâce à un ERP sur mesure. Leur équipe est réactive et d'un professionnalisme rare.",
+    name: "Mehdi Alaoui",
+    role: "DG",
+    company: "NexTech Solutions",
+    content: "ZiryabTec a digitalisé l'ensemble de nos process. Une équipe à l'écoute et techniquement irréprochable.",
   },
   {
     id: 2,
-    name: "Amina Bennani",
-    role: "Directrice Marketing, Luxe & Co",
-    content: "Notre plateforme e-commerce a doublé ses ventes en 6 mois après la refonte par ZiryabTec. Une agence incontournable au Maroc.",
+    name: "Laila Bennani",
+    role: "DSI",
+    company: "Maroc Logistics",
+    content: "L'équipe de développement a livré un ERP sur mesure qui a transformé notre gestion opérationnelle.",
   },
   {
     id: 3,
-    name: "Karim Tazi",
-    role: "Fondateur, Startup Hub",
-    content: "L'outsourcing IT avec ZiryabTec nous a permis d'accélérer notre développement sans compromis sur la qualité du code.",
+    name: "Omar Tazi",
+    role: "Fondateur",
+    company: "CasaFintech",
+    content: "Grâce à leur expertise en IA, nous avons automatisé de nombreuses tâches complexes.",
+  },
+  {
+    id: 4,
+    name: "Samira El Khattabi",
+    role: "DRH",
+    company: "Atlas Industries",
+    content: "La formation dispensée à nos équipes a été remarquable. Un vrai boost de compétences.",
   }
 ];
 
@@ -93,9 +103,9 @@ export const TIMELINE = [
     { name: "React", slug: "react", color: "61DAFB" },
     { 
       name: "AWS", 
-      slug: "amazonwebservices", 
-      color: "FF9900", 
-      customUrl: "https://img.icons8.com/?size=100&id=33039&format=png&color=FF9900" 
+      slug: "amazonaws", 
+      color: "232F3E", 
+      customUrl: "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg" 
     },
     { name: "Docker", slug: "docker", color: "2496ED" },
     { name: "Kubernetes", slug: "kubernetes", color: "326CE5" },

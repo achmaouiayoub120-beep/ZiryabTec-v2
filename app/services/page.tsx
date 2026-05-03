@@ -3,86 +3,69 @@
 import { motion } from "framer-motion";
 import { SERVICES } from "@/lib/constants";
 import Link from "next/link";
-import Image from "next/image";
+import { SectionWrapper, FadeInChild } from "@/components/ui/SectionWrapper";
+import { GradientText } from "@/components/ui/GradientText";
+import { useLanguage } from "@/lib/i18n/LanguageContext";
 
 export default function ServicesPage() {
+  const { t, language } = useLanguage();
+
   return (
-    <div className="pt-32 pb-20 relative z-10">
-      <div className="container mx-auto max-w-6xl px-6 md:px-12">
-        {/* Hero Section */}
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-24"
-        >
-          <div className="inline-block px-4 py-1.5 rounded-full border border-[var(--hz-border)] text-[var(--hz-accent-2)] text-xs font-bold tracking-widest uppercase mb-6">
-            Expertise
-          </div>
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Nos <span className="text-gradient italic font-serif">Services</span>
-          </h1>
-          <p className="text-[var(--hz-text-muted)] text-lg max-w-2xl mx-auto">
-            Des solutions technologiques de pointe conçues pour répondre à vos défis métiers spécifiques.
-          </p>
-        </motion.div>
+    <div className="relative min-h-screen bg-[var(--bg)]">
+      <section className="pt-24 pb-20">
+        <SectionWrapper>
+          <FadeInChild className="text-center">
+            <p className="text-sm text-[var(--accent)] font-bold uppercase tracking-widest mb-3">
+              {t("nav.services").toUpperCase()}
+            </p>
+            <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tight mb-6">
+              {language === "fr" ? "Nos" : "Our"} <GradientText>{t("nav.services")}</GradientText>
+            </h1>
+            <p className="text-[var(--text-secondary)] text-lg max-w-2xl mx-auto leading-relaxed mb-16">
+              {t("services.subtitle")}
+            </p>
+          </FadeInChild>
 
-        {/* Services List */}
-        <div className="flex flex-col gap-32">
-          {SERVICES.map((service, index) => (
-            <motion.div
-              id={service.id}
-              key={service.id}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-              className={`flex flex-col lg:flex-row gap-12 items-center ${index % 2 !== 0 ? "lg:flex-row-reverse" : ""}`}
-            >
-              {/* Text Content */}
-              <div className="w-full lg:w-1/2">
-                <div className="text-5xl mb-6">{service.icon}</div>
-                <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">{service.title}</h2>
-                <p className="text-[var(--hz-text-muted)] text-lg leading-relaxed mb-8">
-                  {service.desc} Nous mettons en place des architectures robustes et évolutives qui grandissent avec votre entreprise.
-                </p>
-                
-                <ul className="mb-8 space-y-4">
-                  {[1, 2, 3].map((item) => (
-                    <li key={item} className="flex items-center gap-3 text-sm text-gray-300">
-                      <div className="w-2 h-2 rounded-full bg-[var(--hz-accent-1)]" />
-                      Avantage stratégique et fonctionnalité {item}
-                    </li>
-                  ))}
-                </ul>
-
-                <Link 
-                  href="/contact"
-                  className="inline-flex items-center text-sm font-bold text-[var(--hz-accent-1)] pb-1 border-b border-[var(--hz-accent-1)] hover:text-white transition-colors group"
-                  data-cursor="button"
+          <div className="max-w-7xl mx-auto px-6 md:px-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {SERVICES.map((service, index) => (
+                <motion.div
+                  key={service.id}
+                  initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, margin: "-40px" }}
+                  transition={{ duration: 0.4, delay: index * 0.08, ease: [0, 0, 0.2, 1] }}
                 >
-                  Demander un devis
-                  <span className="ml-2 transform transition-transform group-hover:translate-x-1">→</span>
-                </Link>
-              </div>
+                  <Link href={`/services/${service.id}`} className="block h-full">
+                    <div className="elite-card p-8 h-full flex flex-col group hover:border-[var(--accent)] transition-colors duration-300 bg-white">
+                      {/* Icon */}
+                      <div className="w-14 h-14 rounded-xl bg-[var(--accent-light)] flex items-center justify-center text-[var(--accent)] mb-6 group-hover:scale-110 transition-transform duration-300">
+                        {service.icon}
+                      </div>
 
-              {/* Visual/Mockup */}
-              <div className="w-full lg:w-1/2">
-                <div className="glass rounded-3xl aspect-[4/3] relative overflow-hidden group border border-[var(--hz-border)] transition-colors duration-500 hover:border-[var(--hz-accent-1)]">
-                  <Image 
-                    src={(service as any).image} 
-                    alt={service.title} 
-                    fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#080B14] via-transparent to-transparent opacity-80" />
-                  <div className="absolute inset-0 bg-[var(--hz-accent-1)] opacity-0 group-hover:opacity-10 transition-opacity duration-500" />
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
+                      {/* Title */}
+                      <h2 className="text-2xl font-display font-bold text-[var(--text-primary)] mb-4">
+                        {t(`services.items.${service.id}.title`)}
+                      </h2>
+
+                      {/* Description */}
+                      <p className="text-[var(--text-secondary)] leading-relaxed mb-8 flex-1">
+                        {t(`services.items.${service.id}.desc`)}
+                      </p>
+
+                      {/* Link indicator */}
+                      <div className="mt-auto flex items-center text-sm font-bold text-[var(--accent)] group-hover:gap-2 transition-all duration-300">
+                        {t("services.more")}
+                        <span className="ml-1 transform transition-transform group-hover:translate-x-1">→</span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </SectionWrapper>
+      </section>
     </div>
   );
 }

@@ -1,84 +1,82 @@
 @import "tailwindcss";
 
 :root {
-  --hz-bg: #f8fafc;
-  --hz-surface: #ffffff;
-  --hz-border: rgba(0, 0, 0, 0.08);
-  --hz-accent-1: #6366f1;
-  --hz-accent-2: #8b5cf6;
-  --hz-accent-3: #06b6d4;
-  --hz-text-primary: #0f172a;
-  --hz-text-muted: #64748b;
-  --hz-glow: rgba(99, 102, 241, 0.1);
-}
+  /* ── Backgrounds ─────────────────────────────── */
+  --bg:             #FAFAFA;   /* Very subtle light grey for the background as seen in the image */
+  --bg-alt:         #F3F4F6;   /* Slightly darker for alternating sections */
+  --white:          #FFFFFF;   /* Réservé UNIQUEMENT aux surfaces de cartes */
 
-.dark {
-  --hz-bg: #080B14;
-  --hz-surface: #0D1021;
-  --hz-border: rgba(99, 102, 241, 0.15);
-  --hz-accent-1: #6366F1;
-  --hz-accent-2: #8B5CF6;
-  --hz-accent-3: #06B6D4;
-  --hz-text-primary: #F8FAFC;
-  --hz-text-muted: #64748B;
-  --hz-glow: rgba(99, 102, 241, 0.4);
+  /* ── Accents ─────────────────────────────────── */
+  --accent:         #2563EB;   /* Blue matching the image (e.g. Tailwind blue-600) */
+  --accent-hover:   #1D4ED8;   /* Hover blue */
+  --accent-light:   #EFF6FF;   /* Light blue for badges */
+  --gold:           #F59E0B;   /* Warm accent */
+  --success:        #10B981;   /* Vert pour les validations */
+
+  /* ── Texte ───────────────────────────────────── */
+  --text-primary:   #111111;   /* Gris très foncé, PAS de noir absolu — réduit la fatigue visuelle */
+  --text-secondary: #555550;   /* Pour les paragraphes descriptifs */
+  --text-muted:     #999990;   /* Pour les légendes et labels */
+
+  /* ── Borders & Shadows ───────────────────────── */
+  --border:         #E8E4DC;   /* Bordure subtile et élégante */
+  --border-hover:   #C8C4BC;   /* Bordure au hover */
+  --card-shadow:    0 2px 16px rgba(0,0,0,0.06);    /* Ombre douce de base */
+  --card-shadow-hover: 0 12px 40px rgba(0,0,0,0.12); /* Ombre prononcée au hover */
+
+  /* ── Radius ──────────────────────────────────── */
+  --radius-sm:  6px;
+  --radius-md:  8px;
+  --radius-lg:  12px;
+  --radius-xl:  16px;
 }
 
 @theme inline {
-  --color-background: var(--hz-bg);
-  --color-foreground: var(--hz-text-primary);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-serif: var(--font-instrument-serif);
+  --color-background: var(--bg);
+  --color-foreground: var(--text-primary);
+  
+  --color-surface:    var(--white);
+  --color-elevated:   var(--bg-alt);
+  --color-border:     var(--border);
+  
+  --color-accent:     var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-light: var(--accent-light);
+  --color-gold:       var(--gold);
+  --color-success:    var(--success);
+  
+  --color-muted:      var(--text-muted);
+  --color-secondary:  var(--text-secondary);
+  
+  --font-display: var(--font-jakarta);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-html {
-  scroll-behavior: smooth;
+html { 
+  scroll-behavior: smooth; 
+  -webkit-font-smoothing: antialiased; 
 }
 
-body {
-  background-color: var(--hz-bg);
-  color: var(--hz-text-primary);
-  /* SVG noise via base64 for premium grain */
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-blend-mode: overlay;
-  background-repeat: repeat;
-  background-attachment: fixed;
-  background-size: 100px 100px; /* scaling down the noise */
-  /* Remove default cursor since we have a custom one */
-  cursor: none;
-  transition: background-color 0.5s ease, color 0.5s ease;
+body { 
+  background: var(--bg); 
+  color: var(--text-primary); 
+  font-family: var(--font-sans), system-ui, sans-serif; 
+  line-height: 1.75; 
 }
 
-.dark body::before {
-  opacity: 0.05;
+h1, h2, h3, h4, h5, h6 { 
+  font-family: var(--font-display), system-ui, sans-serif; 
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--hz-bg);
-  z-index: -1;
+::selection { 
+  background: rgba(26, 86, 219, 0.2); 
+  color: var(--text-primary); 
 }
 
-a, button, [role="button"], input, textarea, select {
-  cursor: none; /* keep hidden for custom cursor */
-}
-
-.text-gradient {
-  background: linear-gradient(135deg, var(--hz-accent-1) 0%, var(--hz-accent-2) 50%, var(--hz-accent-3) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-::selection {
-  background: var(--hz-accent-1);
-  color: #ffffff;
+:focus-visible { 
+  outline: 2px solid var(--accent); 
+  outline-offset: 2px; 
 }
 
 /* Base custom scrollbar */
@@ -86,31 +84,53 @@ a, button, [role="button"], input, textarea, select {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--hz-bg);
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--hz-surface);
+  background: var(--border-hover);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--hz-accent-1);
+  background: var(--text-muted);
 }
 
-/* Glassmorphism utility */
-.glass {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--hz-border);
-  transition: background 0.5s ease, border-color 0.5s ease;
+.elite-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--radius-lg);  /* 12px */
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.dark .glass {
-  background: rgba(13, 16, 33, 0.4);
+.elite-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--card-shadow-hover);
+  border-color: var(--border-hover);
 }
 
-/* Focus styles for accessibility */
-*:focus-visible {
-  outline: 2px solid var(--hz-accent-1);
-  outline-offset: 4px;
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 25%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-float { 
+  animation: float 3s ease-in-out infinite; 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
