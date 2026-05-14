@@ -16,6 +16,26 @@ export const dictionaries = {
       subtitle: "Du développement ERP sur mesure à la stratégie e-commerce, en passant par l'outsourcing expert et l'intelligence artificielle.",
       ctaPrimary: "Démarrer votre projet",
       ctaSecondary: "Voir nos expertises",
+      slides: [
+        {
+          title: "Nous construisons l'avenir digital de votre entreprise.",
+          subtitle: "Du développement ERP sur mesure à la stratégie e-commerce, en passant par l'outsourcing expert et l'intelligence artificielle.",
+          ctaPrimary: "Démarrer votre projet",
+          ctaSecondary: "Voir nos expertises"
+        },
+        {
+          title: "L'innovation au cœur de votre stratégie digitale.",
+          subtitle: "Des solutions technologiques de pointe pour accélérer votre croissance et optimiser vos processus métiers.",
+          ctaPrimary: "Découvrir nos solutions",
+          ctaSecondary: "En savoir plus"
+        },
+        {
+          title: "Transformez vos idées en réalités numériques.",
+          subtitle: "Une équipe d'experts dédiée à la conception d'applications web et mobiles performantes.",
+          ctaPrimary: "Lancer votre idée",
+          ctaSecondary: "Explorer nos réalisations"
+        }
+      ],
       stats: {
         clients: "Clients",
         satisfaction: "Satisfaction",
@@ -175,6 +195,26 @@ export const dictionaries = {
       subtitle: "From custom ERP development to e-commerce strategy, including expert outsourcing and artificial intelligence.",
       ctaPrimary: "Start your project",
       ctaSecondary: "View our expertise",
+      slides: [
+        {
+          title: "We build the digital future of your business.",
+          subtitle: "From custom ERP development to e-commerce strategy, including expert outsourcing and artificial intelligence.",
+          ctaPrimary: "Start your project",
+          ctaSecondary: "View our expertise"
+        },
+        {
+          title: "Innovation at the heart of your digital strategy.",
+          subtitle: "Cutting-edge technological solutions to accelerate your growth and optimize your business processes.",
+          ctaPrimary: "Discover our solutions",
+          ctaSecondary: "Learn more"
+        },
+        {
+          title: "Transform your ideas into digital realities.",
+          subtitle: "A dedicated team of experts in designing high-performance web and mobile applications.",
+          ctaPrimary: "Launch your idea",
+          ctaSecondary: "Explore our work"
+        }
+      ],
       stats: {
         clients: "Clients",
         satisfaction: "Satisfaction",

@@ -63,10 +63,7 @@ export default function CTASection() {
               ))}
             </div>
 
-            {/* Arabic slogan */}
             <p className="mt-8 text-sm text-[var(--text-muted)] italic">
-              <span className="font-sans" dir="rtl">الابتكار في خدمة الإنسان</span>
-              <span className="mx-2">—</span>
               {language === "fr" ? "L'innovation au service de l'humain" : "Innovation for humanity"}
             </p>
           </div>

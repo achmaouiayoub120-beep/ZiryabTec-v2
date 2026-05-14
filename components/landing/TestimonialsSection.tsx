@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { TESTIMONIALS } from "@/lib/constants";
@@ -19,6 +19,13 @@ export default function TestimonialsSection() {
       return next;
     });
   };
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      paginate(1);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [currentIndex]);
 
   const current = TESTIMONIALS[currentIndex];
 

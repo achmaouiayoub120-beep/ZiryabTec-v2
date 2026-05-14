@@ -69,10 +69,6 @@ export default function Footer() {
             <p className="text-white/60 text-sm leading-relaxed mb-4 max-w-sm">
               {t("footer.desc")}
             </p>
-            {/* Arabic slogan */}
-            <p className="text-white/40 text-sm italic mb-6" dir="rtl">
-              الابتكار في خدمة الإنسان
-            </p>
 
             {/* Social Icons */}
             <div className="flex gap-3 mb-8">

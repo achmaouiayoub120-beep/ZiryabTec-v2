@@ -25,8 +25,8 @@ export default function ServicesPreview() {
           </p>
         </FadeInChild>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Bento Grid / Mobile Slider */}
+        <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-6 px-6 md:pb-0 md:mx-0 md:px-0 md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {SERVICES.map((service, index) => (
             <motion.div
               key={service.id}
@@ -34,7 +34,7 @@ export default function ServicesPreview() {
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.4, delay: index * 0.08, ease: [0, 0, 0.2, 1] }}
-              className={index < 2 ? "md:col-span-2" : "md:col-span-1"}
+              className={`min-w-[85vw] sm:min-w-[320px] snap-center md:min-w-0 ${index < 2 ? "md:col-span-2" : "md:col-span-1"}`}
             >
               <Link href={`/services/${service.id}`} className="block h-full">
                 <div className="elite-card p-8 h-full group hover:border-[var(--accent)] transition-colors duration-300">

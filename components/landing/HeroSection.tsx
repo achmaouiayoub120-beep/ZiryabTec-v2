@@ -1,7 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { GradientText } from "@/components/ui/GradientText";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 import { Button } from "@/components/ui/Button";
@@ -96,23 +97,88 @@ function DashboardMockup() {
 
 export default function HeroSection() {
   const { t, language } = useLanguage();
+  const slides = t("hero.slides") || [];
+  const isSlidesArray = Array.isArray(slides) && slides.length > 0;
   
-  // Use translations for the title words
-  const titleText = t("hero.title");
-  const titleWords = titleText.split(" ");
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(0);
+
+  // Auto-play
+  useEffect(() => {
+    if (!isSlidesArray) return;
+    const timer = setInterval(() => {
+      paginate(1);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, [currentSlide, isSlidesArray]);
+
+  const paginate = (newDirection: number) => {
+    if (!isSlidesArray) return;
+    setDirection(newDirection);
+    setCurrentSlide((prev) => {
+      const next = prev + newDirection;
+      if (next < 0) return slides.length - 1;
+      if (next >= slides.length) return 0;
+      return next;
+    });
+  };
+
+  const slideVariants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 100 : -100,
+      opacity: 0,
+      filter: "blur(10px)",
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      filter: "blur(0px)",
+      transition: { duration: 0.6, ease: [0, 0, 0.2, 1] },
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -100 : 100,
+      opacity: 0,
+      filter: "blur(10px)",
+      transition: { duration: 0.4, ease: [0.4, 0, 1, 1] },
+    }),
+  };
+
+  // Fallback to static if no slides
+  const currentSlideData = isSlidesArray ? slides[currentSlide] : {
+    title: t("hero.title"),
+    subtitle: t("hero.subtitle"),
+    ctaPrimary: t("hero.ctaPrimary"),
+    ctaSecondary: t("hero.ctaSecondary"),
+  };
+
+  const titleWords = currentSlideData.title.split(" ");
+  
+  // Dynamic Background variations
+  const bgs = [
+    { circle1: "var(--accent)", circle2: "#06B6D4" },
+    { circle1: "#06B6D4", circle2: "var(--accent)" },
+    { circle1: "var(--gold)", circle2: "var(--accent)" }
+  ];
+  const bg = bgs[currentSlide % bgs.length];
 
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 pointer-events-none">
+      <div className="absolute inset-0 pointer-events-none transition-colors duration-1000">
         <div
           className="absolute inset-0"
           style={{
             background: "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(26, 86, 219, 0.06) 0%, transparent 70%)",
           }}
         />
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[var(--accent)] rounded-full blur-[120px] opacity-[0.04]" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-[#06B6D4] rounded-full blur-[120px] opacity-[0.04]" />
+        <div 
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] opacity-[0.04] transition-colors duration-1000" 
+          style={{ backgroundColor: bg.circle1 }}
+        />
+        <div 
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 rounded-full blur-[120px] opacity-[0.04] transition-colors duration-1000" 
+          style={{ backgroundColor: bg.circle2 }}
+        />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -125,81 +191,110 @@ export default function HeroSection() {
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-20 md:py-32">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* LEFT — Text */}
-          <div>
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent-light)] mb-8"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-60" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]" />
-              </span>
-              <span className="text-[var(--accent)] text-xs font-bold tracking-wider uppercase">
-                {t("hero.badge")}
-              </span>
-            </motion.div>
+          <div className="relative min-h-[500px] flex flex-col justify-center">
+            
+            <AnimatePresence mode="wait" custom={direction}>
+              <motion.div
+                key={currentSlide}
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                className="w-full"
+              >
+                {/* Badge */}
+                <div
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[var(--accent-light)] mb-8"
+                >
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-60" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--accent)]" />
+                  </span>
+                  <span className="text-[var(--accent)] text-xs font-bold tracking-wider uppercase">
+                    {t("hero.badge")}
+                  </span>
+                </div>
 
-            {/* Title */}
-            <h1
-              className="font-display font-bold tracking-tight mb-6"
-              style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)", lineHeight: 1.1 }}
-            >
-              {titleWords.map((word: string, i: number) => {
-                const isSpecial = language === "fr" ? word === "digital" : word === "digital";
-                // In English, maybe "future" or "digital" could be highlighted.
-                return (
-                  <motion.span
-                    key={i}
-                    custom={i}
-                    variants={wordAnimation}
-                    initial="hidden"
-                    animate="visible"
-                    className="inline-block mr-[0.3em]"
-                  >
-                    {word.toLowerCase().includes("digital") ? (
-                      <GradientText>{word}</GradientText>
-                    ) : (
-                      word
-                    )}
-                  </motion.span>
-                );
-              })}
-            </h1>
+                {/* Title */}
+                <h1
+                  className="font-display font-bold tracking-tight mb-6"
+                  style={{ fontSize: "clamp(2.5rem, 7vw, 5.5rem)", lineHeight: 1.1 }}
+                >
+                  {titleWords.map((word: string, i: number) => (
+                    <span
+                      key={i}
+                      className="inline-block mr-[0.3em]"
+                    >
+                      {word.toLowerCase().includes("digital") || word.toLowerCase().includes("innovation") ? (
+                        <GradientText>{word}</GradientText>
+                      ) : (
+                        word
+                      )}
+                    </span>
+                  ))}
+                </h1>
 
-            {/* Subtitle */}
-            <motion.p
-              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.5, delay: 0.9 }}
-              className="text-xl text-[var(--text-secondary)] max-w-xl mb-10 leading-relaxed"
-            >
-              {t("hero.subtitle")}
-            </motion.p>
+                {/* Subtitle */}
+                <p className="text-xl text-[var(--text-secondary)] max-w-xl mb-10 leading-relaxed">
+                  {currentSlideData.subtitle}
+                </p>
 
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.5, delay: 1.1 }}
-              className="flex flex-col sm:flex-row gap-4 mb-12"
-            >
-              <Button href="/contact" variant="primary" size="lg" magnetic>
-                {t("hero.ctaPrimary")} <span className="ml-2">→</span>
-              </Button>
-              <Button href="/services" variant="secondary" size="lg">
-                {t("hero.ctaSecondary")}
-              </Button>
-            </motion.div>
+                {/* CTA Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 mb-12">
+                  <Button href="/contact" variant="primary" size="lg" magnetic>
+                    {currentSlideData.ctaPrimary} <span className="ml-2">→</span>
+                  </Button>
+                  <Button href="/services" variant="secondary" size="lg">
+                    {currentSlideData.ctaSecondary}
+                  </Button>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Slider Navigation (Arrows & Dots) */}
+            {isSlidesArray && (
+              <div className="flex items-center gap-6 mt-4">
+                <button
+                  onClick={() => paginate(-1)}
+                  className="w-10 h-10 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                  aria-label="Précédent"
+                >
+                  <ChevronLeft size={18} />
+                </button>
+                <div className="flex gap-2">
+                  {slides.map((_: any, i: number) => (
+                    <button
+                      key={i}
+                      onClick={() => {
+                        setDirection(i > currentSlide ? 1 : -1);
+                        setCurrentSlide(i);
+                      }}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        i === currentSlide
+                          ? "bg-[var(--accent)] w-6"
+                          : "bg-[var(--border)] hover:bg-[var(--border-hover)]"
+                      }`}
+                      aria-label={`Slide ${i + 1}`}
+                    />
+                  ))}
+                </div>
+                <button
+                  onClick={() => paginate(1)}
+                  className="w-10 h-10 rounded-full border border-[var(--border)] flex items-center justify-center hover:border-[var(--accent)] hover:text-[var(--accent)] transition-colors"
+                  aria-label="Suivant"
+                >
+                  <ChevronRight size={18} />
+                </button>
+              </div>
+            )}
 
             {/* Stats */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.8, delay: 1.4 }}
-              className="flex flex-wrap gap-8 md:gap-12"
+              transition={{ duration: 0.8, delay: 0.5 }}
+              className="flex flex-wrap gap-8 md:gap-12 mt-12 pt-8 border-t border-[var(--border)]"
             >
               {[
                 { value: 50, suffix: "+", label: t("hero.stats.clients") },
@@ -224,7 +319,7 @@ export default function HeroSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden lg:block"
           >
             <DashboardMockup />
