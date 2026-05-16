@@ -21,7 +21,10 @@ export const SERVICES = [
     icon: <Globe size={32} />, 
     image: "/services/dev-web.png",
     desc: "Sites vitrines, e-commerce, apps web complexes avec les dernières technologies.", 
-    short: "Conception de sites web fiables" 
+    short: "Conception de sites web fiables",
+    gradient: "from-blue-500/20 via-sky-500/10 to-blue-600/20",
+    glowColor: "rgba(59, 130, 246, 0.15)",
+    accentColor: "#3B82F6"
   },
   { 
     id: "dev-mobile", 
@@ -29,7 +32,10 @@ export const SERVICES = [
     icon: <Smartphone size={32} />, 
     image: "/services/dev-mobile.png",
     desc: "Applications iOS & Android natives et cross-platform performantes.", 
-    short: "Expérience mobile optimale" 
+    short: "Expérience mobile optimale",
+    gradient: "from-indigo-500/20 via-purple-500/10 to-indigo-600/20",
+    glowColor: "rgba(99, 102, 241, 0.15)",
+    accentColor: "#6366F1"
   },
   { 
     id: "outsourcing", 
@@ -37,7 +43,10 @@ export const SERVICES = [
     icon: <Users size={32} />, 
     image: "/services/outsourcing.png",
     desc: "Équipes dédiées de développeurs, intégrées à vos processus internes.", 
-    short: "Services IT pour votre entreprise" 
+    short: "Services IT pour votre entreprise",
+    gradient: "from-cyan-500/20 via-teal-500/10 to-cyan-600/20",
+    glowColor: "rgba(6, 182, 212, 0.15)",
+    accentColor: "#06B6D4"
   },
   { 
     id: "digitalisation", 
@@ -45,7 +54,10 @@ export const SERVICES = [
     icon: <Zap size={32} />, 
     image: "/services/digitalisation.png",
     desc: "Transformation digitale de vos processus métier, ERP sur mesure.", 
-    short: "Exposition numérique percutante" 
+    short: "Exposition numérique percutante",
+    gradient: "from-violet-500/20 via-fuchsia-500/10 to-violet-600/20",
+    glowColor: "rgba(139, 92, 246, 0.15)",
+    accentColor: "#8B5CF6"
   },
   { 
     id: "formation", 
@@ -53,7 +65,10 @@ export const SERVICES = [
     icon: <GraduationCap size={32} />, 
     image: "/services/formation.png",
     desc: "Programmes de montée en compétences tech pour vos équipes.", 
-    short: "Développez vos compétences" 
+    short: "Développez vos compétences",
+    gradient: "from-orange-500/20 via-amber-500/10 to-orange-600/20",
+    glowColor: "rgba(249, 115, 22, 0.15)",
+    accentColor: "#F97316"
   },
   { 
     id: "data-ia", 
@@ -61,7 +76,10 @@ export const SERVICES = [
     icon: <Brain size={32} />, 
     image: "/services/outsourcing.png",
     desc: "Solutions d'intelligence artificielle et d'analyse de données.", 
-    short: "Intelligence Artificielle" 
+    short: "Intelligence Artificielle",
+    gradient: "from-emerald-500/20 via-green-500/10 to-emerald-600/20",
+    glowColor: "rgba(16, 185, 129, 0.15)",
+    accentColor: "#10B981"
   }
 ];
 
@@ -71,6 +89,7 @@ export const TESTIMONIALS = [
     name: "Mehdi Alaoui",
     role: "DG",
     company: "NexTech Solutions",
+    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
     content: "ZiryabTec a digitalisé l'ensemble de nos process. Une équipe à l'écoute et techniquement irréprochable.",
   },
   {
@@ -78,6 +97,7 @@ export const TESTIMONIALS = [
     name: "Laila Bennani",
     role: "DSI",
     company: "Maroc Logistics",
+    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
     content: "L'équipe de développement a livré un ERP sur mesure qui a transformé notre gestion opérationnelle.",
   },
   {
@@ -85,6 +105,7 @@ export const TESTIMONIALS = [
     name: "Omar Tazi",
     role: "Fondateur",
     company: "CasaFintech",
+    avatar: "https://randomuser.me/api/portraits/men/46.jpg",
     content: "Grâce à leur expertise en IA, nous avons automatisé de nombreuses tâches complexes.",
   },
   {
@@ -92,6 +113,7 @@ export const TESTIMONIALS = [
     name: "Samira El Khattabi",
     role: "DRH",
     company: "Atlas Industries",
+    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
     content: "La formation dispensée à nos équipes a été remarquable. Un vrai boost de compétences.",
   }
 ];

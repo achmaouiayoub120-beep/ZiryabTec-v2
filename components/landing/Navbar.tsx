@@ -8,6 +8,27 @@ import { Phone, Mail, MapPin, Menu, X, Globe, User } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/LanguageContext";
 
+const FrFlag = ({ className = "w-5 h-[14px]" }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" className={`rounded-[2px] overflow-hidden shrink-0 ${className}`}>
+    <rect width="1" height="2" fill="#0055A4" />
+    <rect width="1" height="2" x="1" fill="#FFFFFF" />
+    <rect width="1" height="2" x="2" fill="#EF4135" />
+  </svg>
+);
+
+const EnFlag = ({ className = "w-5 h-[14px]" }: { className?: string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" className={`rounded-[2px] overflow-hidden shrink-0 ${className}`}>
+    <clipPath id="t">
+      <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
+    </clipPath>
+    <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+    <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6"/>
+    <path d="M0,0 L60,30 M60,0 L0,30" clipPath="url(#t)" stroke="#C8102E" strokeWidth="4"/>
+    <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10"/>
+    <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6"/>
+  </svg>
+);
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -109,13 +130,28 @@ export default function Navbar() {
 
           {/* Desktop Right Actions */}
           <div className="hidden lg:flex items-center gap-6">
-            <button 
-              onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
-              className="flex items-center gap-2 text-[#555550] hover:text-[#111111] font-semibold text-[15px] transition-colors bg-gray-100/50 hover:bg-gray-100 px-3 py-1.5 rounded-full"
-            >
-              <Globe size={16} />
-              <span className="uppercase">{language}</span>
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => setLanguage("fr")}
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-[10px] text-[15px] font-bold transition-all ${
+                  language === "fr"
+                    ? "bg-[#EFF6FF] text-[#2563EB] border-2 border-[#2563EB] ring-2 ring-[#2563EB] ring-offset-[2.5px] ring-offset-white"
+                    : "bg-[#F3F4F6] text-[#999990] hover:bg-[#E5E7EB] border-2 border-transparent"
+                }`}
+              >
+                <FrFlag /> FR
+              </button>
+              <button
+                onClick={() => setLanguage("en")}
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-[10px] text-[15px] font-bold transition-all ${
+                  language === "en"
+                    ? "bg-[#EFF6FF] text-[#2563EB] border-2 border-[#2563EB] ring-2 ring-[#2563EB] ring-offset-[2.5px] ring-offset-white"
+                    : "bg-[#F3F4F6] text-[#999990] hover:bg-[#E5E7EB] border-2 border-transparent"
+                }`}
+              >
+                <EnFlag /> EN
+              </button>
+            </div>
             <Link href="/client" className="flex items-center gap-2 text-[#555550] hover:text-[#111111] font-semibold text-[15px] transition-colors">
               <User size={18} />
               <span>{t("nav.clientSpace")}</span>
@@ -174,13 +210,28 @@ export default function Navbar() {
                 className="mt-4 flex flex-col gap-4"
               >
                 <div className="flex items-center gap-4 mb-4">
-                  <button 
-                    onClick={() => setLanguage(language === "fr" ? "en" : "fr")}
-                    className="flex flex-1 items-center justify-center gap-2 text-[#111111] font-semibold bg-gray-100 py-3 rounded-[8px]"
-                  >
-                    <Globe size={18} />
-                    <span className="uppercase">{language}</span>
-                  </button>
+                  <div className="flex flex-1 items-center justify-center gap-4 py-2">
+                    <button
+                      onClick={() => setLanguage("fr")}
+                      className={`flex items-center gap-2 px-5 py-2 rounded-[12px] text-[15px] font-bold transition-all ${
+                        language === "fr"
+                          ? "bg-[#EFF6FF] text-[#2563EB] border-2 border-[#2563EB] ring-2 ring-[#2563EB] ring-offset-2 ring-offset-white"
+                          : "bg-[#F3F4F6] text-[#999990] hover:bg-[#E5E7EB] border-2 border-transparent"
+                      }`}
+                    >
+                      <FrFlag className="w-[22px] h-[16px]" /> FR
+                    </button>
+                    <button
+                      onClick={() => setLanguage("en")}
+                      className={`flex items-center gap-2 px-5 py-2 rounded-[12px] text-[15px] font-bold transition-all ${
+                        language === "en"
+                          ? "bg-[#EFF6FF] text-[#2563EB] border-2 border-[#2563EB] ring-2 ring-[#2563EB] ring-offset-2 ring-offset-white"
+                          : "bg-[#F3F4F6] text-[#999990] hover:bg-[#E5E7EB] border-2 border-transparent"
+                      }`}
+                    >
+                      <EnFlag className="w-[22px] h-[16px]" /> EN
+                    </button>
+                  </div>
                   <Link href="/client" className="flex flex-1 items-center justify-center gap-2 text-[#111111] font-semibold bg-gray-100 py-3 rounded-[8px]" onClick={() => setMobileMenuOpen(false)}>
                     <User size={18} />
                     <span>{t("nav.clientSpace")}</span>

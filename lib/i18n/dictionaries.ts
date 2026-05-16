@@ -76,6 +76,32 @@ export const dictionaries = {
         }
       }
     },
+    ecosystem: {
+      tag: "NOTRE ÉCOSYSTÈME",
+      title: "Nos Projets Phares",
+      subtitle: "Découvrez les solutions innovantes que nous développons pour transformer les entreprises et les individus.",
+      learnMore: "En savoir plus",
+      accessPlatform: "Explorer les formations",
+      badgeFormation: "Plateforme E-learning",
+      projects: {
+        "ztec-erp": {
+          title: "ZTEC-ERP",
+          desc: "Notre ERP cloud sur mesure, conçu pour centraliser et automatiser l'ensemble des processus métier des PME marocaines : gestion commerciale, RH, comptabilité et production."
+        },
+        "retailink": {
+          title: "Retailink",
+          desc: "Plateforme e-commerce connectée alliant gestion de catalogue, logistique intelligente et analytics en temps réel pour acteurs du retail."
+        },
+        "coachprolink": {
+          title: "Coachprolink",
+          desc: "Outil CRM dédié aux coachs et consultants : gestion de clientèle, planification de séances, suivi de progression et facturation automatisée."
+        },
+        "ziryabtec-formation": {
+          title: "ZiryabTec Formation",
+          desc: "Propulsez votre carrière avec nos formations certifiantes en développement, data et IT."
+        }
+      }
+    },
     about: {
       hero: {
         tag: "À PROPOS",
@@ -252,6 +278,32 @@ export const dictionaries = {
         "data-ia": {
           title: "Data & AI",
           desc: "Artificial intelligence and data analysis solutions."
+        }
+      }
+    },
+    ecosystem: {
+      tag: "OUR ECOSYSTEM",
+      title: "Our Flagship Projects",
+      subtitle: "Discover the innovative solutions we build to transform businesses and individuals.",
+      learnMore: "Learn more",
+      accessPlatform: "Explore training programs",
+      badgeFormation: "E-learning Platform",
+      projects: {
+        "ztec-erp": {
+          title: "ZTEC-ERP",
+          desc: "Our custom cloud ERP, designed to centralize and automate all business processes for Moroccan SMEs: sales, HR, accounting, and production."
+        },
+        "retailink": {
+          title: "Retailink",
+          desc: "A connected e-commerce platform combining catalog management, smart logistics, and real-time analytics for retail players."
+        },
+        "coachprolink": {
+          title: "Coachprolink",
+          desc: "A CRM tool dedicated to coaches and consultants: client management, session planning, progress tracking, and automated invoicing."
+        },
+        "ziryabtec-formation": {
+          title: "ZiryabTec Training",
+          desc: "Boost your career with our certified training programs in development, data, and IT."
         }
       }
     },

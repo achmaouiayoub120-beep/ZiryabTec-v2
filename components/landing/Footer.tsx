@@ -31,7 +31,7 @@ const socialLinks = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const entrepriseLinks = [
     { name: t("footer.links.about"), href: "/about" },
@@ -170,7 +170,7 @@ export default function Footer() {
             © {currentYear} {SITE_CONFIG.name}. {t("footer.rights")}
           </p>
           <p className="flex items-center gap-1.5 text-white/40 text-xs">
-            {t("footer.builtWith")} <Heart size={12} className="fill-red-500 text-red-500" /> {t("footer.at")}
+            {language === 'fr' ? 'Fièrement conçu au Maroc' : 'Proudly designed in Morocco'} <span className="text-sm leading-none">🇲🇦</span>
           </p>
         </div>
       </div>

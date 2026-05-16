@@ -108,6 +108,41 @@ h1, h2, h3, h4, h5, h6 {
   border-color: var(--border-hover);
 }
 
+/* ── Bento Card — Glassmorphism ─────────────── */
+.bento-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: var(--radius-xl);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 16px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.bento-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.04),
+    0 20px 60px rgba(0, 0, 0, 0.08),
+    0 0 40px var(--card-glow, rgba(99, 102, 241, 0.08)),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.bento-glow {
+  background: linear-gradient(
+    135deg,
+    transparent 30%,
+    var(--card-glow, rgba(99, 102, 241, 0.06)) 50%,
+    transparent 70%
+  );
+  border-radius: inherit;
+}
+
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
